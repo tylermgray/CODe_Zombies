@@ -5,6 +5,7 @@ from app.io_utils import *
 from app.ui import *
 from app.logic import *
 from app.combat import *
+from app.models import *
 import sys
 
 
@@ -12,6 +13,7 @@ def start() -> None:
     ensure_dirs()
     characters = load_json(DATA_DIR / "characters.json")
     weapons = load_json(DATA_DIR / "weapons.json")
+
 
     while True:
         choice = main_menu()
@@ -59,6 +61,7 @@ def run() -> None:
         
 
         if state['player']['round'] % 6 == 0:
+
             start_combat(state, 'special')
         else:
             start_combat(state, 'standard')
@@ -67,6 +70,10 @@ def run() -> None:
 
 
 if __name__ == "__main__":
-    
-    start()
-    run()
+
+    images_json = load_json(DATA_DIR / "images.json")
+    image = images_json["logo"]["render"]
+    print(render_enemy(image))
+
+    # start()
+    # run()

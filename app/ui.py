@@ -6,6 +6,9 @@ import sys
 import time
 import os
 from colorama import init, Fore, Back, Style
+from app.sound import *
+
+
 
 
 init()
@@ -56,6 +59,7 @@ def typewriter_input(prompt_text):
     return user_input
 
 def main_menu() -> str:
+    gamestart_sound()
     typewriter_print("\n=== " + red + "COD" + white + "e " + red + "Zombies" + white + " ===\n")
     typewriter_print(f"A terminal text based game inspired by {red}Call of Duty Zombies{white}.\n")
     print(red + "[N]" + white + "ew Game" + red + "   [C]" + white + "ontinue" + red + "  [Q]" + white + "uit")
