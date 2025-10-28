@@ -71,9 +71,7 @@ def run() -> None:
 
 if __name__ == "__main__":
 
-    images_json = load_json(DATA_DIR / "images.json")
-    image = images_json["logo"]["render"]
-    print(render_enemy(image))
 
-    # start()
-    # run()
+
+    start()
+    run()
