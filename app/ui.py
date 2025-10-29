@@ -1,5 +1,3 @@
-## Menus, Prompts, and Printing
-
 from __future__ import annotations
 import math
 import sys
@@ -147,4 +145,3 @@ def render_text(state, text):
         typewriter_print(text)
     else:
         typewriter_print(text, 0.003)
-

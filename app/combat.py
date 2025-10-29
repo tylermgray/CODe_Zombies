@@ -204,4 +204,3 @@ def start_combat(state, enemy_type) -> None:
     else:
         state['player']['round'] = 0
         return False
-
