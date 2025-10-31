@@ -5,6 +5,7 @@ import time
 import os
 from colorama import init, Fore, Back, Style
 from app.sound import *
+from app.logic import *
 
 
 
@@ -12,7 +13,7 @@ from app.sound import *
 init()
 
 
-
+# Terminal Text Colors
 red = Fore.LIGHTRED_EX
 white = Fore.LIGHTWHITE_EX
 blue = Fore.LIGHTBLUE_EX
@@ -57,20 +58,21 @@ def typewriter_input(prompt_text):
     return user_input
 
 def main_menu() -> str:
-    gamestart_sound()
     typewriter_print("\n=== " + red + "COD" + white + "e " + red + "Zombies" + white + " ===\n")
     typewriter_print(f"A terminal text based game inspired by {red}Call of Duty Zombies{white}.\n")
     print(red + "[N]" + white + "ew Game" + red + "   [C]" + white + "ontinue" + red + "  [Q]" + white + "uit")
     return typewriter_input("> ").strip().lower()[:1]
 
 def between_round_menu(state) -> str:
-    typewriter_print("\n= Intermission =")
+    typewriter_print("\n= Menu =")
     typewriter_print("Save & [C]ontinue   Save & [Q]uit")
     player_input = input("> ").upper()
     if player_input == 'C':
-        return True
+        save_game(state)
+        return
     elif player_input == 'Q':
-        return False
+        save_game(state)
+        sys.exit()
     else:
         print("Invalid input, try again.\n>  ")
         return between_round_menu(state)
@@ -123,7 +125,7 @@ def confirm(msg: str) -> None:
 def press_any_key() -> None:
     typewriter_input(f"\n(press {red}Enter{white} to continue)\n")
 
-def render_text(state, text):
+def render_text(state, text, delay = 0.02 ):
     time.sleep(2.00)
     points = f"      Points: {state['player']['points']}  |"
     rounds = f"Round: {state['player']['round']}  |"
@@ -141,7 +143,5 @@ def render_text(state, text):
     clear_console()
     print(hud)
     print(divider)
-    if len(text) < 100:
-        typewriter_print(text)
-    else:
-        typewriter_print(text, 0.003)
+
+    typewriter_print(text, delay)
